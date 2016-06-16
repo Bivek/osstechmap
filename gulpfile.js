@@ -4,6 +4,8 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
+    data = require('gulp-data'),
+    path = require('path'),
     notify = require('gulp-notify'),
     livereload = require('gulp-livereload'),
     del = require('del');
@@ -30,17 +32,10 @@ gulp.task('scripts', function() {
 
 gulp.task('pug', function() {
     return gulp.src('app/templates/**/*.pug')
-        .pipe(pug({
-            data: {
-                about: {
-                    title: 'About Me',
-                    name: 'Markus Klems',
-                    portrait: 'https://avatars3.githubusercontent.com/u/493405?v=3&s=460',
-                    github: 'https://github.com/markusklems',
-                    email: 'klems@tu-berlin.de'
-                }
-            }
+        .pipe(data(function(file) {
+            return require('./app/data/' + path.basename(file.path) + '.json');
         }))
+        .pipe(pug())
         .pipe(gulp.dest('dist'));
 });
 
