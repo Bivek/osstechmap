@@ -56,7 +56,7 @@ gulp.task('scripts', function() {
 gulp.task('pug', function() {
     return gulp.src('app/templates/**/*.pug')
         .pipe(data(function(file) {
-            return require('./app/data/' + path.basename(file.path) + '.json');
+            return require('./app/templates/' + path.basename(file.path) + '.json');
         }))
         .pipe(pug())
         .pipe(gulp.dest('dist'))
@@ -80,7 +80,7 @@ gulp.task('watch', function() {
     gulp.watch('app/js/**/*.js', ['scripts']);
 
     // Watch .pug files
-    gulp.watch('app/templates/**/*.pug', ['pug']);
+    gulp.watch(['app/templates/**/*.pug', 'app/templates/**/*.pug.json'], ['pug']);
 
     // BrowserSync
     browserSync.init({

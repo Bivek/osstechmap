@@ -1,3 +1,7 @@
+$.getJSON("nodes.vis.json", function(json) {
+    console.log(json); // this will show the info it in firebug console
+});
+
 // create an array with nodes
 var nodes = new vis.DataSet([{
     id: 1,
@@ -30,7 +34,7 @@ var edges = new vis.DataSet([{
     to: 5
 }]);
 // create a network
-var container = document.getElementById('mynetwork');
+var container = document.getElementById('oss-network');
 var data = {
     nodes: nodes,
     edges: edges
