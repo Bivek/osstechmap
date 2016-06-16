@@ -79,6 +79,9 @@ gulp.task('watch', function() {
     // Watch .js files
     gulp.watch('app/js/**/*.js', ['scripts']);
 
+    // Watch .pug files
+    gulp.watch('app/templates/**/*.pug', ['pug']);
+
     // BrowserSync
     browserSync.init({
         server: {
