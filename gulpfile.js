@@ -1,5 +1,8 @@
 var gulp = require('gulp'),
     pug = require('gulp-pug'),
+    sass = require('gulp-ruby-sass'),
+    autoprefixer = require('gulp-autoprefixer'),
+    cssnano = require('gulp-cssnano'),
     jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
@@ -12,9 +15,27 @@ var gulp = require('gulp'),
 var browserSync = require('browser-sync').create();
 
 gulp.task('default', ['clean'], function() {
-    gulp.start('pug', 'scripts');
+    gulp.start('scripts', 'styles', 'pug');
 });
 
+// Styles
+gulp.task('styles', function() {
+    return sass('app/styles/main.scss', {
+            style: 'expanded'
+        })
+        .pipe(autoprefixer('last 2 version'))
+        .pipe(gulp.dest('dist/styles'))
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(cssnano())
+        .pipe(gulp.dest('dist/styles'))
+        .pipe(notify({
+            message: 'styles task complete'
+        }));
+});
+
+// JavaScripts
 gulp.task('scripts', function() {
     return gulp.src('app/js/**/*.js')
         .pipe(jshint('.jshintrc'))
@@ -31,6 +52,7 @@ gulp.task('scripts', function() {
         }));
 });
 
+// HTML templating
 gulp.task('pug', function() {
     return gulp.src('app/templates/**/*.pug')
         .pipe(data(function(file) {
@@ -49,7 +71,7 @@ gulp.task('clean', function() {
 
 gulp.task('watch', function() {
     // Watch .scss files
-    //gulp.watch('app/scss/**/*.scss', ['styles']);
+    gulp.watch('app/styles/**/*.scss', ['styles']);
 
     // Watch image files
     //gulp.watch('app/img/**/*', ['images']);
@@ -57,10 +79,11 @@ gulp.task('watch', function() {
     // Watch .js files
     gulp.watch('app/js/**/*.js', ['scripts']);
 
-    // BrowserSync it
+    // BrowserSync
     browserSync.init({
         server: {
             baseDir: "dist/"
         }
     });
+    gulp.watch("dist/**/*").on('change', browserSync.reload);
 });

@@ -40,5 +40,9 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
+### Sass ###
+.sass-cache/
+*.css.map
+
 # dist folder
 dist/

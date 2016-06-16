@@ -13,6 +13,6 @@ If everything looks fine, I will merge your PR in the master. Thanks!!
 
 ### Project setup
 
-1. Install the node modules: `npm i`
+1. Install dev dependencies: `gem install sass` and then `npm i`
 2. Install gulp globally: `npm install --global gulp-cli`
 3. Run gulp: `gulp`
