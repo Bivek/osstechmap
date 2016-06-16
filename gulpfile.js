@@ -30,3 +30,20 @@ gulp.task('scripts', function() {
 gulp.task('clean', function() {
     return del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img']);
 });
+
+gulp.task('watch', function() {
+    // Watch .scss files
+    //gulp.watch('app/scss/**/*.scss', ['styles']);
+
+    // Watch image files
+    //gulp.watch('app/img/**/*', ['images']);
+
+    // Watch .js files
+    gulp.watch('app/js/**/*.js', ['scripts']);
+
+    // Create LiveReload server
+    livereload.listen();
+
+    // Watch any files in dist/, reload on change
+    gulp.watch(['dist/**']).on('change', livereload.changed);
+});
