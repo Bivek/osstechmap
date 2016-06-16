@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+    pug = require('gulp-pug'),
     jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
@@ -25,6 +26,12 @@ gulp.task('scripts', function() {
         .pipe(notify({
             message: 'Scripts task complete'
         }));
+});
+
+gulp.task('pug', function() {
+    return gulp.src('app/templates/**/*.pug')
+        .pipe(pug())
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('clean', function() {
