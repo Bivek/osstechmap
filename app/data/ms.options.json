@@ -1,0 +1,10 @@
+{
+    "groups": {
+        "myGroup": {
+            "color": {
+                "background": "red"
+            },
+            "borderWidth": 3
+        }
+    }
+}

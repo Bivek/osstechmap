@@ -4,10 +4,12 @@
     "shape": "square"
 }, {
     "id": "docker",
-    "label": "Docker"
+    "label": "Docker",
+    "group": "container"
 }, {
     "id": "kubernetes",
-    "label": "Kubernetes"
+    "label": "Kubernetes",
+    "group": "container"
 }, {
     "id": "netflix:hystrix",
     "label": "Hystrix"
