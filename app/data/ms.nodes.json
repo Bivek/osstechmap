@@ -1,0 +1,23 @@
+[{
+    "id": "container",
+    "label": "Container",
+    "shape": "square"
+}, {
+    "id": "docker",
+    "label": "Docker"
+}, {
+    "id": "kubernetes",
+    "label": "Kubernetes"
+}, {
+    "id": "netflix:hystrix",
+    "label": "Hystrix"
+}, {
+    "id": "netflix:turbine",
+    "label": "Turbine"
+}, {
+    "id": "netflix:ribbon",
+    "label": "Ribbon"
+}, {
+    "id": "fabric8:kubeflix",
+    "label": "Kubeflix"
+}]

@@ -1,0 +1,27 @@
+[{
+    "from": "container",
+    "to": "docker"
+}, {
+    "from": "container",
+    "to": "kubernetes"
+}, {
+    "from": "kubernetes",
+    "to": "docker",
+    "dashes": true
+}, {
+    "from": "fabric8:kubeflix",
+    "to": "kubernetes",
+    "arrows": "to"
+}, {
+    "from": "fabric8:kubeflix",
+    "to": "netflix:hystrix",
+    "arrows": "to"
+}, {
+    "from": "fabric8:kubeflix",
+    "to": "netflix:turbine",
+    "arrows": "to"
+}, {
+    "from": "fabric8:kubeflix",
+    "to": "netflix:ribbon",
+    "arrows": "to"
+}]

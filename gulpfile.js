@@ -15,7 +15,7 @@ var gulp = require('gulp'),
 var browserSync = require('browser-sync').create();
 
 gulp.task('default', ['clean'], function() {
-    gulp.start('scripts', 'styles', 'pug');
+    gulp.start('scripts', 'styles', 'pug', 'copy:data');
 });
 
 // Styles
@@ -65,8 +65,13 @@ gulp.task('pug', function() {
         }));
 });
 
+gulp.task('copy:data', function() {
+    gulp.src(['app/data/**/*.json'])
+        .pipe(gulp.dest('dist/data'));
+});
+
 gulp.task('clean', function() {
-    return del(['dist/css', 'dist/js', 'dist/img', 'dist/**/*.html']);
+    return del(['dist/css', 'dist/js', 'dist/img', 'dist/**/*.html', 'dist/data']);
 });
 
 gulp.task('watch', function() {
@@ -81,6 +86,9 @@ gulp.task('watch', function() {
 
     // Watch .pug files
     gulp.watch(['app/templates/**/*.pug', 'app/templates/**/*.pug.json'], ['pug']);
+
+    // Watch data files
+    gulp.watch('app/data/**/*.json', ['copy:data']);
 
     // BrowserSync
     browserSync.init({
