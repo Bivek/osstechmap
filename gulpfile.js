@@ -7,11 +7,12 @@ var gulp = require('gulp'),
     data = require('gulp-data'),
     path = require('path'),
     notify = require('gulp-notify'),
-    livereload = require('gulp-livereload'),
     del = require('del');
 
+var browserSync = require('browser-sync').create();
+
 gulp.task('default', ['clean'], function() {
-    gulp.start('scripts');
+    gulp.start('pug', 'scripts');
 });
 
 gulp.task('scripts', function() {
@@ -19,14 +20,14 @@ gulp.task('scripts', function() {
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'))
         .pipe(concat('main.js'))
-        .pipe(gulp.dest('dist/assets/js'))
+        .pipe(gulp.dest('dist/js'))
         .pipe(rename({
             suffix: '.min'
         }))
         .pipe(uglify())
-        .pipe(gulp.dest('dist/assets/js'))
+        .pipe(gulp.dest('dist/js'))
         .pipe(notify({
-            message: 'Scripts task complete'
+            message: 'scripts task complete'
         }));
 });
 
@@ -36,11 +37,14 @@ gulp.task('pug', function() {
             return require('./app/data/' + path.basename(file.path) + '.json');
         }))
         .pipe(pug())
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist'))
+        .pipe(notify({
+            message: 'pug task complete'
+        }));
 });
 
 gulp.task('clean', function() {
-    return del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img']);
+    return del(['dist/css', 'dist/js', 'dist/img', 'dist/**/*.html']);
 });
 
 gulp.task('watch', function() {
@@ -53,9 +57,10 @@ gulp.task('watch', function() {
     // Watch .js files
     gulp.watch('app/js/**/*.js', ['scripts']);
 
-    // Create LiveReload server
-    livereload.listen();
-
-    // Watch any files in dist/, reload on change
-    gulp.watch(['dist/**']).on('change', livereload.changed);
+    // BrowserSync it
+    browserSync.init({
+        server: {
+            baseDir: "dist/"
+        }
+    });
 });
