@@ -30,7 +30,17 @@ gulp.task('scripts', function() {
 
 gulp.task('pug', function() {
     return gulp.src('app/templates/**/*.pug')
-        .pipe(pug())
+        .pipe(pug({
+            data: {
+                about: {
+                    title: 'About Me',
+                    name: 'Markus Klems',
+                    portrait: 'https://avatars3.githubusercontent.com/u/493405?v=3&s=460',
+                    github: 'https://github.com/markusklems',
+                    email: 'klems@tu-berlin.de'
+                }
+            }
+        }))
         .pipe(gulp.dest('dist'));
 });
 
