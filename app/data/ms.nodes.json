@@ -1,11 +1,14 @@
 [{
     "id": "container",
     "label": "Container",
-    "shape": "square"
+    "shape": "square",
+    "group": "myGroup",
+    "tags": ["a", "b"]
 }, {
     "id": "docker",
     "label": "Docker",
-    "group": "container"
+    "group": "myGroup",
+    "tags": ["a"]
 }, {
     "id": "kubernetes",
     "label": "Kubernetes",
