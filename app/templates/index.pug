@@ -2,11 +2,10 @@ doctype html
 html(lang="en")
   head
     title= index.title
-    link(href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.css" rel="stylesheet" type="text/css")
     link(href="styles/main.min.css" rel="stylesheet" type="text/css")
   body
     h1= index.title
-    #oss-network.canvas
-    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.js")
+    #techmap
+    script(type="text/javascript" src="https://d3js.org/d3.v3.min.js")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js")
     script(async src="js/main.js")

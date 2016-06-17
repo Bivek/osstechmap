@@ -1,0 +1,28 @@
+{
+    "nodes": [{
+        "name": "Docker",
+        "group": 1,
+        "tags": ["container"]
+    }, {
+        "name": "Kubernetes",
+        "group": 1,
+        "tags": ["container", "google"]
+    }, {
+        "name": "Kubeflix",
+        "group": 1,
+        "tags": ["container", "fabric8"]
+    }, {
+        "name": "Netflix Ribbon",
+        "group": 2,
+        "tags": ["netflix"]
+    }],
+    "links": [{
+        "source": 1,
+        "target": 0,
+        "value": 1
+    }, {
+        "source": 2,
+        "target": 0,
+        "value": 8
+    }]
+}
